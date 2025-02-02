@@ -1,0 +1,82 @@
+<%- include("partials/header.ejs") %>
+<style>
+    /* Center the error message */
+    #error {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    /* Styling for the heading */
+    #error h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    /* Style the image */
+    #error img {
+        max-width: 80%;
+        height: auto;
+        margin: 20px 0;
+    }
+
+    /* Style the link as a button */
+    #error a {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 18px;
+        color: white;
+        background-color: #007bff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: 0.3s ease-in-out;
+    }
+
+    #error a:hover {
+        background-color: #0056b3;
+    }
+
+</style>
+<% if (typeof posts !== "undefined" && posts.length === 0) { %>
+    <div id="error">
+        <h1>We did not find any posts</h1>
+        <img src="/images/error.png" alt="No posts found"/><br/>
+        <a href="/new-post">Create your first post</a>
+    </div>
+  <% } else { %>
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% posts.forEach((post, index) => { %>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="images/temp/<%= post.imgsrc %>" class="card-img-top" alt="Post Image" width="100%" height="225">
+              <div class="card-body">
+                <p class="card-text"><%= post.title %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                      <a href="/seemore/<%= index %>" style = "color: black; text-decoration: none; ">See More</a>
+                    </button>
+                    
+                    <button type="button" class="btn btn-secondary"><a href="/edit/<%= index %>" style = "color: white; text-decoration: none;" >Edit</a></button>
+
+                    <button type="button" class="btn btn-danger"><a href="/delete/<%= index %>" style = "color: white; text-decoration: none;" >Delete</a>
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  <% } %>
+  
+
+  <%- include("partials/footer.ejs") %>

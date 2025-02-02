@@ -1,0 +1,57 @@
+<%- include("partials/header.ejs") %>
+
+<style>
+form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+input[type="text"],input[type="file"],textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="file"] {
+    padding: 5px;
+    border: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<h1>Edit Post</h1>
+<form action ="/editpost/<%= index %>" method="post" enctype="multipart/form-data">
+  <input name="name" type="text" class="feedback-input" placeholder="Title" required value = "<%= post.title %>"  />
+  <p>Current Image:         <img src="/images/temp/<%= post.imgsrc %>" class="card-img-top" alt="Post Image"></p> 
+  <input type="file" name="uploadedimg" >
+  <textarea name="text" class="feedback-input" placeholder="Post Content"  required><%= post.content%></textarea>
+  <input type="submit"  value="Make changes" class="btn btn-primary" />
+
+</form>
+
+
+<%- include("partials/footer.ejs") %>

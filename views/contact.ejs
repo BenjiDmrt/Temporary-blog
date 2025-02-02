@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs") %>
+
+<style>
+  form {
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+</style>
+<h1>Contact Me</h1>
+<form>
+  <input name="name" type="text" class="feedback-input" placeholder="Name" required/>
+  <input name="email" type="text" class="feedback-input" placeholder="Email" required/>
+  <textarea name="text" class="feedback-input" placeholder="Comment" required></textarea>
+  <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
+
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); y
+
+    const name = document.querySelector('[name="name"]').value;
+    const email = document.querySelector('[name="email"]').value;
+    const text = document.querySelector('[name="text"]').value;
+
+    const mailtoLink = `mailto:benjamin.dmrt@gmail.com?subject=Contact Form Submission&body=Name: ${name}%0AEmail: ${email}%0AComment: ${text}`;
+
+    // Open the default email client
+    window.location.href = mailtoLink;
+  });
+</script>
+<%- include("partials/footer.ejs") %>
